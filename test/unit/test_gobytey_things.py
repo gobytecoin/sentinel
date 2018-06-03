@@ -7,12 +7,12 @@ sys.path.append(os.path.normpath(os.path.join(os.path.dirname(__file__), '../../
 
 @pytest.fixture
 def valid_gobyte_address(network='mainnet'):
-    return 'yYe8KwyaUu5YswSYmB3q3ryx8XTUu9y7Ui' if (network == 'testnet') else 'XpjStRH8SgA6PjgebtPZqCa9y7hLXP767n'
+    return 'n7mzEvBy6JdP2QQUqJrLjitucQKgTBZAR2' if (network == 'testnet') else 'GaoLZRViqSiELPkrdRabXrbYaT83hBZkrB'
 
 
 @pytest.fixture
 def invalid_gobyte_address(network='mainnet'):
-    return 'yYe8KwyaUu5YswSYmB3q3ryx8XTUu9y7Uj' if (network == 'testnet') else 'XpjStRH8SgA6PjgebtPZqCa9y7hLXP767m'
+    return 'n7mzEvBy6JdP2QQUqJrLjitu1QKgTBZFZ3' if (network == 'testnet') else 'GaoLZRViqSiELPkrdRabXrbYaT83hBZkrZ'
 
 
 @pytest.fixture
@@ -41,7 +41,7 @@ def mn_status_good():
     status = {
         "vin": "CTxIn(COutPoint(f68a2e5d64f4a9be7ff8d0fbd9059dcd3ce98ad7a19a9260d1d6709127ffac56, 1), scriptSig=)",
         "service": "[2604:a880:800:a1::9b:0]:19999",
-        "pubkey": "yUuAsYCnG5XrjgsGvRwcDqPhgLUnzNfe8L",
+        "pubkey": "GaoLZRViqSiELPkrdRabXrbYaT83hBZkrB",
         "status": "Masternode successfully started"
     }
     return status
