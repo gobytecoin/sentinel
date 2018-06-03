@@ -19,7 +19,7 @@ def is_valid_gobyte_address(address, network='mainnet'):
     # 4 checksum bytes are appended so the total number of
     # base58 encoded bytes should be 25.  This means the number of characters
     # in the encoding should be about 34 ( 25 * log2( 256 ) / log2( 58 ) ).
-    gobyte_version = 38 if network == 'testnet' else 112
+    gobyte_version = 112 if network == 'testnet' else 38
 
     # Check length (This is important because the base58 library has problems
     # with long addresses (which are invalid anyway).
