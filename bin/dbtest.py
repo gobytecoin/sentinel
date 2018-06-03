@@ -28,7 +28,7 @@ pr = Proposal(
 
 # sb = Superblock(
 #     event_block_height = 62500,
-#     payment_addresses = "yYe8KwyaUu5YswSYmB3q3ryx8XTUu9y7Ui|yTC62huR4YQEPn9AJHjnQxxreHSbgAoatV",
+#     payment_addresses = "n7mzEvBy6JdP2QQUqJrLjitucQKgTBZAR2|yTC62huR4YQEPn9AJHjnQxxreHSbgAoatV",
 #     payment_amounts  = "5|3"
 # )
 
