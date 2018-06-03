@@ -20,7 +20,7 @@ import misc
 pr = Proposal(
     name='proposal7',
     url='https://gobytecentral.com/proposal7',
-    payment_address='yTC62huR4YQEPn9AJHjnQxxreHSbgAoatV',
+    payment_address='nJUUwdV8JvDXjoMLhmqi9mQCgiA86xPL4h',
     payment_amount=39.23,
     start_epoch=1483250400,
     end_epoch=1491022800,
@@ -28,7 +28,7 @@ pr = Proposal(
 
 # sb = Superblock(
 #     event_block_height = 62500,
-#     payment_addresses = "n7mzEvBy6JdP2QQUqJrLjitucQKgTBZAR2|yTC62huR4YQEPn9AJHjnQxxreHSbgAoatV",
+#     payment_addresses = "n7mzEvBy6JdP2QQUqJrLjitucQKgTBZAR2|nJUUwdV8JvDXjoMLhmqi9mQCgiA86xPL4h",
 #     payment_amounts  = "5|3"
 # )
 

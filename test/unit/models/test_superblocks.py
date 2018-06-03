@@ -45,7 +45,7 @@ def go_list_proposals():
          u'AbstainCount': 29,
          u'CollateralHash': u'3efd23283aa98c2c33f80e4d9ed6f277d195b72547b6491f43280380f6aac810',
          u'DataHex': u'5b5b2270726f706f73616c222c207b22656e645f65706f6368223a20323132323532303430302c20226e616d65223a20226665726e616e64657a2d37363235222c20227061796d656e745f61646472657373223a2022795443363268755234595145506e39414a486a6e517878726548536267416f617456222c20227061796d656e745f616d6f756e74223a2033322e30312c202273746172745f65706f6368223a20313437343236313038362c202274797065223a20312c202275726c223a2022687474703a2f2f6461736863656e7472616c2e6f72672f6665726e616e64657a2d37363235227d5d5d',
-         u'DataString': u'[["proposal", {"end_epoch": 2122520400, "name": "fernandez-7625", "payment_address": "yTC62huR4YQEPn9AJHjnQxxreHSbgAoatV", "payment_amount": 32.01, "start_epoch": 1474261086, "type": 1, "url": "http://gobytecentral.org/fernandez-7625"}]]',
+         u'DataString': u'[["proposal", {"end_epoch": 2122520400, "name": "fernandez-7625", "payment_address": "nJUUwdV8JvDXjoMLhmqi9mQCgiA86xPL4h", "payment_amount": 32.01, "start_epoch": 1474261086, "type": 1, "url": "http://gobytecentral.org/fernandez-7625"}]]',
          u'Hash': u'0523445762025b2e01a2cd34f1d10f4816cf26ee1796167e5b029901e5873630',
          u'IsValidReason': u'',
          u'NoCount': 56,
@@ -115,7 +115,7 @@ def go_list_superblocks():
 def superblock():
     sb = Superblock(
         event_block_height=62500,
-        payment_addresses='n7mzEvBy6JdP2QQUqJrLjitucQKgTBZAR2|yTC62huR4YQEPn9AJHjnQxxreHSbgAoatV',
+        payment_addresses='n7mzEvBy6JdP2QQUqJrLjitucQKgTBZAR2|nJUUwdV8JvDXjoMLhmqi9mQCgiA86xPL4h',
         payment_amounts='5|3',
         proposal_hashes='e8a0057914a2e1964ae8a945c4723491caae2077a90a00a2aabee22b40081a87|d1ce73527d7cd6f2218f8ca893990bc7d5c6b9334791ce7973bfa22f155f826e',
     )
@@ -143,25 +143,25 @@ def test_superblock_is_valid(superblock):
     assert superblock.is_valid() is True
 
     # mess with payment addresses
-    superblock.payment_addresses = 'yTC62huR4YQEPn9AJHjnQxxreHSbgAoatV|1234 Anywhere ST, Chicago, USA'
+    superblock.payment_addresses = 'nJUUwdV8JvDXjoMLhmqi9mQCgiA86xPL4h|1234 Anywhere ST, Chicago, USA'
     assert superblock.is_valid() is False
 
     # single payment addr/amt is ok
-    superblock.payment_addresses = 'yTC62huR4YQEPn9AJHjnQxxreHSbgAoatV'
+    superblock.payment_addresses = 'nJUUwdV8JvDXjoMLhmqi9mQCgiA86xPL4h'
     superblock.payment_amounts = '5.00'
     assert superblock.is_valid() is True
 
     # ensure number of payment addresses matches number of payments
-    superblock.payment_addresses = 'yTC62huR4YQEPn9AJHjnQxxreHSbgAoatV'
+    superblock.payment_addresses = 'nJUUwdV8JvDXjoMLhmqi9mQCgiA86xPL4h'
     superblock.payment_amounts = '37.00|23.24'
     assert superblock.is_valid() is False
 
-    superblock.payment_addresses = 'n7mzEvBy6JdP2QQUqJrLjitucQKgTBZAR2|yTC62huR4YQEPn9AJHjnQxxreHSbgAoatV'
+    superblock.payment_addresses = 'n7mzEvBy6JdP2QQUqJrLjitucQKgTBZAR2|nJUUwdV8JvDXjoMLhmqi9mQCgiA86xPL4h'
     superblock.payment_amounts = '37.00'
     assert superblock.is_valid() is False
 
     # ensure amounts greater than zero
-    superblock.payment_addresses = 'yTC62huR4YQEPn9AJHjnQxxreHSbgAoatV'
+    superblock.payment_addresses = 'nJUUwdV8JvDXjoMLhmqi9mQCgiA86xPL4h'
     superblock.payment_amounts = '-37.00'
     assert superblock.is_valid() is False
 
@@ -223,7 +223,7 @@ def test_deterministic_superblock_creation(go_list_proposals):
     sb = gobytelib.create_superblock(prop_list, 72000, budget_max=max_budget, sb_epoch_time=misc.now())
 
     assert sb.event_block_height == 72000
-    assert sb.payment_addresses == 'n7mzEvBy6JdP2QQUqJrLjitucQKgTBZAR2|yTC62huR4YQEPn9AJHjnQxxreHSbgAoatV'
+    assert sb.payment_addresses == 'n7mzEvBy6JdP2QQUqJrLjitucQKgTBZAR2|nJUUwdV8JvDXjoMLhmqi9mQCgiA86xPL4h'
     assert sb.payment_amounts == '25.75000000|32.01000000'
     assert sb.proposal_hashes == 'dfd7d63979c0b62456b63d5fc5306dbec451180adee85876cbf5b28c69d1a86c|0523445762025b2e01a2cd34f1d10f4816cf26ee1796167e5b029901e5873630'
 
