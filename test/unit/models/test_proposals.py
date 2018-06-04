@@ -28,10 +28,10 @@ def go_list_proposals():
     items = [
         {u'AbsoluteYesCount': 1000,
          u'AbstainCount': 7,
-         u'CollateralHash': u'acb67ec3f3566c9b94a26b70b36c1f74a010a37c0950c22d683cc50da324fdca',
-         u'DataHex': u'5b5b2270726f706f73616c222c207b22656e645f65706f6368223a20323132323532303430302c20226e616d65223a20226465616e2d6d696c6c65722d35343933222c20227061796d656e745f61646472657373223a2022795965384b77796155753559737753596d4233713372797838585455753979375569222c20227061796d656e745f616d6f756e74223a2032352e37352c202273746172745f65706f6368223a20313437343236313038362c202274797065223a20312c202275726c223a2022687474703a2f2f6461736863656e7472616c2e6f72672f6465616e2d6d696c6c65722d35343933227d5d5d',
-         u'DataString': u'[["proposal", {"end_epoch": 2122520400, "name": "dean-miller-5493", "payment_address": "yYe8KwyaUu5YswSYmB3q3ryx8XTUu9y7Ui", "payment_amount": 25.75, "start_epoch": 1474261086, "type": 1, "url": "http://gobytecentral.org/dean-miller-5493"}]]',
-         u'Hash': u'dfd7d63979c0b62456b63d5fc5306dbec451180adee85876cbf5b28c69d1a86c',
+         u'CollateralHash': u'501d8b0110b318b413a444ace9ceeea3ce2972a1523baaa3e1614bd5a2a5a9b0',
+         u'DataHex': u'5b5b2270726f706f73616c222c7b22656e645f65706f6368223a313532383430393634312c226e616d65223a2269616d67726f6f7432222c227061796d656e745f61646472657373223a226e46377433714433386351506a5847396e4447356537637036475447366f54663955222c227061796d656e745f616d6f756e74223a3130302c2273746172745f65706f6368223a313532383430363037362c2274797065223a312c2275726c223a2268747470733a2f2f676f627974652e6e6574776f726b227d5d5d',
+         u'DataString': u'[["proposal", {"end_epoch": 2122520400, "name": "dean-miller-5493", "payment_address": "nLLGSuauCV21NBpHJpLHKevWpwE3t6CHGc", "payment_amount": 25.75, "start_epoch": 1474261086, "type": 1, "url": "http://gobytecentral.org/dean-miller-5493"}]]',
+         u'Hash': u'e966911624df92b90582ef9cdd2b3d8c1ed5c06ee2847aadc68ad0442c22ea6a',
          u'IsValidReason': u'',
          u'NoCount': 25,
          u'YesCount': 1025,
@@ -42,10 +42,10 @@ def go_list_proposals():
          u'fCachedValid': True},
         {u'AbsoluteYesCount': 1000,
          u'AbstainCount': 29,
-         u'CollateralHash': u'3efd23283aa98c2c33f80e4d9ed6f277d195b72547b6491f43280380f6aac810',
-         u'DataHex': u'5b5b2270726f706f73616c222c207b22656e645f65706f6368223a20323132323532303430302c20226e616d65223a20226665726e616e64657a2d37363235222c20227061796d656e745f61646472657373223a2022795965384b77796155753559737753596d4233713372797838585455753979375569222c20227061796d656e745f616d6f756e74223a2032352e37352c202273746172745f65706f6368223a20313437343236313038362c202274797065223a20312c202275726c223a2022687474703a2f2f6461736863656e7472616c2e6f72672f6665726e616e64657a2d37363235227d5d5d',
-         u'DataString': u'[["proposal", {"end_epoch": 2122520400, "name": "fernandez-7625", "payment_address": "yYe8KwyaUu5YswSYmB3q3ryx8XTUu9y7Ui", "payment_amount": 25.75, "start_epoch": 1474261086, "type": 1, "url": "http://gobytecentral.org/fernandez-7625"}]]',
-         u'Hash': u'0523445762025b2e01a2cd34f1d10f4816cf26ee1796167e5b029901e5873630',
+         u'CollateralHash': u'283cce0ccc4793f202429bf3fd8233319c340f7d240a5cd6db26bfebaeefb7a7',
+         u'DataHex': u'5b5b2270726f706f73616c222c7b22656e645f65706f6368223a313532383133313531352c226e616d65223a224c4f574b455931222c227061796d656e745f61646472657373223a226e4c4c4753756175435632314e4270484a704c484b65765770774533743643484763222c227061796d656e745f616d6f756e74223a3135302c2273746172745f65706f6368223a313532383132373935302c2274797065223a312c2275726c223a2268747470733a2f2f7777772e676f627974652e6e6574776f726b227d5d5d',
+         u'DataString': u'[["proposal", {"end_epoch": 1528131515, "name": "fernandez-7625", "payment_address": "nLLGSuauCV21NBpHJpLHKevWpwE3t6CHGc", "payment_amount": 25.75, "start_epoch": 1528127950, "type": 1, "url": "http://gobytecentral.org/fernandez-7625"}]]',
+         u'Hash': u'2b6b4aee7bea18b38a928ef8c50aa74dac58787e850d990881daf5c1341c9bf8',
          u'IsValidReason': u'',
          u'NoCount': 56,
          u'YesCount': 1056,
@@ -68,7 +68,7 @@ def proposal():
         end_epoch=2122520400,
         name="wine-n-cheeze-party",
         url="https://gobytecentral.com/wine-n-cheeze-party",
-        payment_address="yYe8KwyaUu5YswSYmB3q3ryx8XTUu9y7Ui",
+        payment_address="nLLGSuauCV21NBpHJpLHKevWpwE3t6CHGc",
         payment_amount=13
     )
 
@@ -153,7 +153,7 @@ def test_proposal_is_valid(proposal):
     proposal.payment_address = '7gnwGHt17heGpG9Crfeh4KGpYNFugPhJdh'
     assert proposal.is_valid() is False
 
-    proposal.payment_address = 'yYe8KwyaUu5YswSYmB3q3ryx8XTUu9y7Ui'
+    proposal.payment_address = 'nLLGSuauCV21NBpHJpLHKevWpwE3t6CHGc'
     assert proposal.is_valid() is True
 
     # reset
@@ -245,5 +245,5 @@ def test_approved_and_ranked(go_list_proposals):
 
     prop_list = Proposal.approved_and_ranked(proposal_quorum=1, next_superblock_max_budget=60)
 
-    assert prop_list[0].object_hash == u'dfd7d63979c0b62456b63d5fc5306dbec451180adee85876cbf5b28c69d1a86c'
-    assert prop_list[1].object_hash == u'0523445762025b2e01a2cd34f1d10f4816cf26ee1796167e5b029901e5873630'
+    assert prop_list[0].object_hash == u'e966911624df92b90582ef9cdd2b3d8c1ed5c06ee2847aadc68ad0442c22ea6a'
+    assert prop_list[1].object_hash == u'2b6b4aee7bea18b38a928ef8c50aa74dac58787e850d990881daf5c1341c9bf8'
