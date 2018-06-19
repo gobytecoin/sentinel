@@ -45,12 +45,6 @@ In the crontab editor, add the lines below, replacing '/home/YOURUSERNAME/sentin
 
     * * * * * cd /home/YOURUSERNAME/sentinel && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1
 
-### 4. Test the Configuration
-
-Test the config by runnings all tests from the sentinel folder you cloned into
-
-    $ ./venv/bin/py.test ./test
-
 With all tests passing and crontab setup, Sentinel will stay in sync with gobyted and the installation is complete
 
 ## Configuration
