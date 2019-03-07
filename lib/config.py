@@ -10,16 +10,19 @@ default_sentinel_config = os.path.normpath(
 )
 sentinel_config_file = os.environ.get('SENTINEL_CONFIG', default_sentinel_config)
 sentinel_cfg = GoByteConfig.tokenize(sentinel_config_file)
-sentinel_version = "1.1.0"
+sentinel_version = "1.3.0"
 min_gobyted_proto_version_with_sentinel_ping = 70207
 
 
 def get_gobyte_conf():
-    home = os.environ.get('HOME')
+    if sys.platform == 'win32':
+        gobyte_conf = os.path.join(os.getenv('APPDATA'), "GoByte/gobyte.conf")
+    else:
+        home = os.environ.get('HOME')
 
-    gobyte_conf = os.path.join(home, ".gobytecore/gobyte.conf")
-    if sys.platform == 'darwin':
-        gobyte_conf = os.path.join(home, "Library/Application Support/GoByteCore/gobyte.conf")
+        gobyte_conf = os.path.join(home, ".gobytecore/gobyte.conf")
+        if sys.platform == 'darwin':
+            gobyte_conf = os.path.join(home, "Library/Application Support/GoByte/gobyte.conf")
 
     gobyte_conf = sentinel_cfg.get('gobyte_conf', gobyte_conf)
 
@@ -28,6 +31,10 @@ def get_gobyte_conf():
 
 def get_network():
     return sentinel_cfg.get('network', 'mainnet')
+
+
+def get_rpchost():
+    return sentinel_cfg.get('rpchost', '127.0.0.1')
 
 
 def sqlite_test_db_name(sqlite_file_path):
@@ -81,4 +88,5 @@ def get_db_conn():
 
 gobyte_conf = get_gobyte_conf()
 network = get_network()
+rpc_host = get_rpchost()
 db = get_db_conn()

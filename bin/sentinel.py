@@ -6,7 +6,7 @@ import init
 import config
 import misc
 from gobyted import GoByteDaemon
-from models import Superblock, Proposal, GovernanceObject, Watchdog
+from models import Superblock, Proposal, GovernanceObject
 from models import VoteSignals, VoteOutcomes, Transient
 import socket
 from misc import printdbg
@@ -22,42 +22,6 @@ import argparse
 # sync gobyted gobject list with our local relational DB backend
 def perform_gobyted_object_sync(gobyted):
     GovernanceObject.sync(gobyted)
-
-
-# delete old watchdog objects, create new when necessary
-def watchdog_check(gobyted):
-    printdbg("in watchdog_check")
-
-    # delete expired watchdogs
-    for wd in Watchdog.expired(gobyted):
-        printdbg("\tFound expired watchdog [%s], voting to delete" % wd.object_hash)
-        wd.vote(gobyted, VoteSignals.delete, VoteOutcomes.yes)
-
-    # now, get all the active ones...
-    active_wd = Watchdog.active(gobyted)
-    active_count = active_wd.count()
-
-    # none exist, submit a new one to the network
-    if 0 == active_count:
-        # create/submit one
-        printdbg("\tNo watchdogs exist... submitting new one.")
-        wd = Watchdog(created_at=int(time.time()))
-        wd.submit(gobyted)
-
-    else:
-        wd_list = sorted(active_wd, key=lambda wd: wd.object_hash)
-
-        # highest hash wins
-        winner = wd_list.pop()
-        printdbg("\tFound winning watchdog [%s], voting VALID" % winner.object_hash)
-        winner.vote(gobyted, VoteSignals.valid, VoteOutcomes.yes)
-
-        # if remaining Watchdogs exist in the list, vote delete
-        for wd in wd_list:
-            printdbg("\tFound losing watchdog [%s], voting DELETE" % wd.object_hash)
-            wd.vote(gobyted, VoteSignals.delete, VoteOutcomes.yes)
-
-    printdbg("leaving watchdog_check")
 
 
 def prune_expired_proposals(gobyted):
@@ -207,9 +171,6 @@ def main():
 
     if gobyted.has_sentinel_ping:
         sentinel_ping(gobyted)
-    else:
-        # delete old watchdog objects, create a new if necessary
-        watchdog_check(gobyted)
 
     # auto vote network objects as valid/invalid
     # check_object_validity(gobyted)
