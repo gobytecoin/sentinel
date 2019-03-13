@@ -138,12 +138,39 @@ def test_superblock_is_valid(superblock):
     superblock.payment_amounts = '7,|yzx'
     assert superblock.is_valid() is False
 
+    superblock.payment_amounts = '7|8'
+    assert superblock.is_valid() is True
+
+    superblock.payment_amounts = ' 7|8'
+    assert superblock.is_valid() is False
+
+    superblock.payment_amounts = '7|8 '
+    assert superblock.is_valid() is False
+
+    superblock.payment_amounts = ' 7|8 '
+    assert superblock.is_valid() is False
+
     # reset
     superblock = Superblock(**orig.get_dict())
     assert superblock.is_valid() is True
 
     # mess with payment addresses
     superblock.payment_addresses = 'nJUUwdV8JvDXjoMLhmqi9mQCgiA86xPL4h|1234 Anywhere ST, Chicago, USA'
+    assert superblock.is_valid() is False
+
+    # leading spaces in payment addresses
+    superblock.payment_addresses = ' nJUUwdV8JvDXjoMLhmqi9mQCgiA86xPL4h'
+    superblock.payment_amounts = '5.00'
+    assert superblock.is_valid() is False
+
+    # trailing spaces in payment addresses
+    superblock.payment_addresses = 'nJUUwdV8JvDXjoMLhmqi9mQCgiA86xPL4h '
+    superblock.payment_amounts = '5.00'
+    assert superblock.is_valid() is False
+
+    # leading & trailing spaces in payment addresses
+    superblock.payment_addresses = ' nJUUwdV8JvDXjoMLhmqi9mQCgiA86xPL4h '
+    superblock.payment_amounts = '5.00'
     assert superblock.is_valid() is False
 
     # single payment addr/amt is ok
@@ -187,19 +214,6 @@ def test_superblock_is_valid(superblock):
     assert superblock.is_valid() is True
 
 
-def test_superblock_is_deletable(superblock):
-    # now = misc.now()
-    # assert superblock.is_deletable() is False
-
-    # superblock.end_epoch = now - (86400 * 29)
-    # assert superblock.is_deletable() is False
-
-    # add a couple seconds for time variance
-    # superblock.end_epoch = now - ((86400 * 30) + 2)
-    # assert superblock.is_deletable() is True
-    pass
-
-
 def test_serialisable_fields():
     s1 = ['event_block_height', 'payment_addresses', 'payment_amounts', 'proposal_hashes']
     s2 = Superblock.serialisable_fields()
@@ -220,7 +234,8 @@ def test_deterministic_superblock_creation(go_list_proposals):
 
     max_budget = 60
     prop_list = Proposal.approved_and_ranked(proposal_quorum=1, next_superblock_max_budget=max_budget)
-    sb = gobytelib.create_superblock(prop_list, 72000, budget_max=max_budget, sb_epoch_time=misc.now())
+
+    sb = gobytelib.create_superblock(prop_list, 72000, max_budget, misc.now())
 
     assert sb.event_block_height == 72000
     assert sb.payment_addresses == 'nLLGSuauCV21NBpHJpLHKevWpwE3t6CHGc|nLLGSuauCV21NBpHJpLHKevWpwE3t6CHGc'

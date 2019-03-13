@@ -29,7 +29,6 @@ def are_deps_installed():
         import peewee
         import bitcoinrpc.authproxy
         import simplejson
-        import inflection
         installed = True
     except ImportError as e:
         print("[error]: Missing dependencies")
@@ -96,7 +95,7 @@ def main():
         sys.exit(1)
 
     if not has_gobyte_conf():
-        print("GoByteCore must be installed and configured, including JSONRPC access in gobyte.conf")
+        print("GoByte must be installed and configured, including JSONRPC access in gobyte.conf")
         sys.exit(1)
 
 

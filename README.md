@@ -8,11 +8,20 @@ Sentinel is an autonomous agent for persisting, processing and automating GoByte
 
 Sentinel is implemented as a Python application that binds to a local version 12.1 gobyted instance on each GoByte V12.1 Masternode.
 
-This guide covers installing Sentinel onto an existing 12.1 Masternode in Ubuntu 14.04 / 16.04.
+## Table of Contents
+- [Install](#install)
+  - [Dependencies](#dependencies)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Installation
+## Install
 
-### 1. Install Prerequisites
+These instructions cover installing Sentinel on Ubuntu 16.04 / 18.04.
+
+### Dependencies
 
 Make sure Python version 2.7.x or above is installed:
 
@@ -27,7 +36,7 @@ Make sure the local GoByte daemon running is at least version 12.1 (120100)
 
     $ gobyte-cli getinfo | grep version
 
-### 2. Install Sentinel
+### Install Sentinel
 
 Clone the Sentinel repo and install Python dependencies.
 
@@ -35,15 +44,27 @@ Clone the Sentinel repo and install Python dependencies.
     $ virtualenv ./venv
     $ ./venv/bin/pip install -r requirements.txt
 
-### 3. Set up Cron
+## Usage
+
+Sentinel is "used" as a script called from cron every minute.
+
+### Set up Cron
 
 Set up a crontab entry to call Sentinel every minute:
 
     $ crontab -e
 
-In the crontab editor, add the lines below, replacing '/home/YOURUSERNAME/sentinel' to the path where you cloned sentinel to:
+In the crontab editor, add the lines below, replacing '/path/to/sentinel' to the path where you cloned sentinel to:
 
-    * * * * * cd /home/YOURUSERNAME/sentinel && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1
+    * * * * * cd /path/to/sentinel && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1
+
+### Test Configuration
+
+Test the config by running tests:
+
+    $ ./venv/bin/py.test ./test
+
+With all tests passing and crontab setup, Sentinel will stay in sync with gobyted and the installation is complete
 
 ## Configuration
 
@@ -59,11 +80,11 @@ To view debug output, set the `SENTINEL_DEBUG` environment variable to anything 
 
 ## Contributing
 
-Please follow the [GoByteCore guidelines for contributing](https://github.com/gobytecoin/gobyte-core/blob/v0.12.1.x/CONTRIBUTING.md).
+Please follow the [GoByte guidelines for contributing](https://github.com/gobytecoin/gobyte/blob/master/CONTRIBUTING.md).
 
 Specifically:
 
-* [Contributor Workflow](https://github.com/gobytecoin/gobyte-core/blob/v0.12.1.x/CONTRIBUTING.md#contributor-workflow)
+* [Contributor Workflow](https://github.com/gobytecoin/gobyte/blob/master/CONTRIBUTING.md#contributor-workflow)
 
     To contribute a patch, the workflow is as follows:
 
@@ -75,6 +96,6 @@ Specifically:
 
     Commit messages should be verbose by default, consisting of a short subject line (50 chars max), a blank line and detailed explanatory text as separate paragraph(s); unless the title alone is self-explanatory (like "Corrected typo in main.cpp") then a single title line is sufficient. Commit messages should be helpful to people reading your code in the future, so explain the reasoning for your decisions. Further explanation [here](http://chris.beams.io/posts/git-commit/).
 
-### License
+## License
 
-Released under the MIT license, under the same terms as GoByteCore itself. See [LICENSE](LICENSE) for more info.
+Released under the MIT license, under the same terms as GoByte itself. See [LICENSE](LICENSE) for more info.

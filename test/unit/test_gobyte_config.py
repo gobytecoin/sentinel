@@ -62,7 +62,23 @@ def test_get_rpc_creds():
     assert creds.get('port') == 13454
 
 
-# ensure gobyte network (mainnet, testnet) matches that specified in config
-# requires running gobyted on whatever port specified...
-#
-# This is more of a gobyted/jsonrpc test than a config test...
+def test_slurp_config_file():
+    import tempfile
+
+    gobyte_config = """# basic settings
+#testnet=1 # TESTNET
+server=1
+printtoconsole=1
+txindex=1 # enable transaction index
+"""
+
+    expected_stripped_config = """server=1
+printtoconsole=1
+txindex=1 # enable transaction index
+"""
+
+    with tempfile.NamedTemporaryFile(mode='w') as temp:
+        temp.write(gobyte_config)
+        temp.flush()
+        conf = GoByteConfig.slurp_config_file(temp.name)
+        assert conf == expected_stripped_config
