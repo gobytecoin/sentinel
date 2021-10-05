@@ -56,23 +56,23 @@ def is_database_correctly_configured():
     return configured
 
 
-def has_dash_conf():
+def has_gobyte_conf():
     import config
     import io
 
-    valid_dash_conf = False
+    valid_gobyte_conf = False
 
-    # ensure dash_conf exists & readable
+    # ensure gobyte_conf exists & readable
     #
-    # if not, print a message stating that Dash Core must be installed and
-    # configured, including JSONRPC access in dash.conf
+    # if not, print a message stating that GoByte Core must be installed and
+    # configured, including JSONRPC access in gobyte.conf
     try:
-        f = io.open(config.dash_conf)
-        valid_dash_conf = True
+        f = io.open(config.gobyte_conf)
+        valid_gobyte_conf = True
     except IOError as e:
         print(e)
 
-    return valid_dash_conf
+    return valid_gobyte_conf
 
 
 # === begin main
@@ -94,8 +94,8 @@ def main():
         print("Please ensure correct database configuration.")
         sys.exit(1)
 
-    if not has_dash_conf():
-        print("DashCore must be installed and configured, including JSONRPC access in dash.conf")
+    if not has_gobyte_conf():
+        print("GoByteCore must be installed and configured, including JSONRPC access in gobyte.conf")
         sys.exit(1)
 
 

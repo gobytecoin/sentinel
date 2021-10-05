@@ -3,29 +3,29 @@
 """
 import sys
 import os
-from dash_config import DashConfig
+from gobyte_config import GoByteConfig
 
 default_sentinel_config = os.path.normpath(
     os.path.join(os.path.dirname(__file__), '../sentinel.conf')
 )
 sentinel_config_file = os.environ.get('SENTINEL_CONFIG', default_sentinel_config)
-sentinel_cfg = DashConfig.tokenize(sentinel_config_file)
+sentinel_cfg = GoByteConfig.tokenize(sentinel_config_file)
 sentinel_version = "1.5.0"
 
 
-def get_dash_conf():
+def get_gobyte_conf():
     if sys.platform == 'win32':
-        dash_conf = os.path.join(os.getenv('APPDATA'), "DashCore/dash.conf")
+        gobyte_conf = os.path.join(os.getenv('APPDATA'), "GoByteCore/gobyte.conf")
     else:
         home = os.environ.get('HOME')
 
-        dash_conf = os.path.join(home, ".dashcore/dash.conf")
+        gobyte_conf = os.path.join(home, ".gobytecore/gobyte.conf")
         if sys.platform == 'darwin':
-            dash_conf = os.path.join(home, "Library/Application Support/DashCore/dash.conf")
+            gobyte_conf = os.path.join(home, "Library/Application Support/GoByteCore/gobyte.conf")
 
-    dash_conf = sentinel_cfg.get('dash_conf', dash_conf)
+    gobyte_conf = sentinel_cfg.get('gobyte_conf', gobyte_conf)
 
-    return dash_conf
+    return gobyte_conf
 
 
 def get_network():
@@ -85,7 +85,7 @@ def get_db_conn():
     return db
 
 
-dash_conf = get_dash_conf()
+gobyte_conf = get_gobyte_conf()
 network = get_network()
 rpc_host = get_rpchost()
 db = get_db_conn()

@@ -1,9 +1,9 @@
 #!/bin/bash
 set -evx
 
-mkdir ~/.dashcore
+mkdir ~/.gobytecore
 
 # safety check
-if [ ! -f ~/.dashcore/.dash.conf ]; then
-  cp share/dash.conf.example ~/.dashcore/dash.conf
+if [ ! -f ~/.gobytecore/.gobyte.conf ]; then
+  cp share/gobyte.conf.example ~/.gobytecore/gobyte.conf
 fi

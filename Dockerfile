@@ -1,6 +1,6 @@
 FROM python:3.9-slim-buster
-LABEL maintainer="Dash Developers <dev@dash.org>"
-LABEL description="Dockerised Sentinel"
+LABEL maintainer="GoByte Developers <dev@gobyte.network>"
+LABEL description="Dockerised GoByte Sentinel"
 
 COPY . /sentinel
 
