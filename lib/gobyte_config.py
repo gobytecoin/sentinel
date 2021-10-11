@@ -34,7 +34,7 @@ class GoByteConfig():
         creds = {key: value for (key, value) in match}
 
         # standard GoByte defaults...
-        default_port = 9998 if (network == 'mainnet') else 19998
+        default_port = 12454 if (network == 'mainnet') else 13454
 
         # use default port for network if not specified in gobyte.conf
         if not ('port' in creds):
