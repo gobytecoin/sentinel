@@ -55,7 +55,7 @@ Set up a crontab entry to call Sentinel every minute:
 
 In the crontab editor, add the lines below, replacing '/path/to/sentinel' to the path where you cloned sentinel to:
 
-    * * * * * cd /path/to/sentinel && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1
+    * * * * * cd /home/gobyte/sentinel && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1
 
 ### Test Configuration
 
@@ -69,7 +69,7 @@ With all tests passing and crontab setup, Sentinel will stay in sync with gobyte
 
 An alternative (non-default) path to the `gobyte.conf` file can be specified in `sentinel.conf`:
 
-    gobyte_conf=/path/to/gobyte.conf
+    gobyte_conf=/home/gobyte/.gobytecore/gobyte.conf
 
 ## Troubleshooting
 
