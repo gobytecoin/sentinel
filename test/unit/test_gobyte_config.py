@@ -43,14 +43,14 @@ def test_get_rpc_creds():
     assert creds.get('password') == 'EwJeV3fZTyTVozdECF627BkBMnNDwQaVLakG3A4wXYyk'
     assert creds.get('port') == 29241
 
-    gobyte_config = gobyte_conf(rpcpassword='s00pers33kr1t', rpcport=8000)
+    gobyte_config = gobyte_conf(rpcpassword='s00pers33kr1t', rpcport=12454)
     creds = GoByteConfig.get_rpc_creds(gobyte_config, 'testnet')
 
     for key in ('user', 'password', 'port'):
         assert key in creds
     assert creds.get('user') == 'gobyterpc'
     assert creds.get('password') == 's00pers33kr1t'
-    assert creds.get('port') == 8000
+    assert creds.get('port') == 12454
 
     no_port_specified = re.sub('\nrpcport=.*?\n', '\n', gobyte_conf(), re.M)
     creds = GoByteConfig.get_rpc_creds(no_port_specified, 'testnet')
@@ -59,7 +59,7 @@ def test_get_rpc_creds():
         assert key in creds
     assert creds.get('user') == 'gobyterpc'
     assert creds.get('password') == 'EwJeV3fZTyTVozdECF627BkBMnNDwQaVLakG3A4wXYyk'
-    assert creds.get('port') == 19998
+    assert creds.get('port') == 13454
 
 
 def test_slurp_config_file():
