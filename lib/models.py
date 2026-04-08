@@ -24,7 +24,7 @@ except ImportError:
 from governance_class import GovernanceClass
 
 db = config.db
-db.connect()
+db.connect(reuse_if_open=True)
 
 
 # TODO: lookup table?
