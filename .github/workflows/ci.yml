@@ -1,0 +1,36 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Create gobyte config
+        run: |
+          mkdir ~/.gobytecore
+          cp share/gobyte.conf.example ~/.gobytecore/gobyte.conf
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run unit tests
+        run: |
+          py.test -svv test/unit/
+
+      - name: Run style check
+        run: |
+          pip install pycodestyle
+          find ./lib ./test ./bin -name "*.py" -exec pycodestyle --show-source --ignore=E501,E402,E722,E129,W503,W504 {} +

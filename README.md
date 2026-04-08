@@ -1,6 +1,6 @@
 # GoByte Sentinel
 
-[![Build Status](https://travis-ci.org/gobytecoin/sentinel.svg?branch=master)](https://travis-ci.org/gobytecoin/sentinel)
+[![Build Status](https://github.com/gobytecoin/sentinel/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/gobytecoin/sentinel/actions/workflows/ci.yml)
 
 > An automated governance helper for GoByte Masternodes.
 
