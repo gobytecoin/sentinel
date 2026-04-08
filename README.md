@@ -31,7 +31,7 @@ Make sure Python version 3.6.x or above is installed:
 
     python3 --version
 
-Make sure the local GoByteCore daemon running is at least version 0.15.0.
+Make sure the local GoByteCore daemon running is at least version 0.16.2.
 
     $ gobyted --version | head -n1
 
@@ -55,7 +55,7 @@ Set up a crontab entry to call Sentinel every minute:
 
 In the crontab editor, add the lines below, replacing '/path/to/sentinel' to the path where you cloned sentinel to:
 
-    * * * * * cd /home/gobyte/sentinel && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1
+    * * * * * cd /path/to/sentinel && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1
 
 ### Test Configuration
 
@@ -69,7 +69,7 @@ With all tests passing and crontab setup, Sentinel will stay in sync with gobyte
 
 An alternative (non-default) path to the `gobyte.conf` file can be specified in `sentinel.conf`:
 
-    gobyte_conf=/home/gobyte/.gobytecore/gobyte.conf
+    gobyte_conf=/path/to/gobyte.conf
 
 ## Troubleshooting
 
@@ -77,10 +77,6 @@ To view debug output, set the `SENTINEL_DEBUG` environment variable to anything 
 
     $ SENTINEL_DEBUG=1 ./venv/bin/python bin/sentinel.py
 
-## Maintainer
-
-Dash [@nmarley](https://github.com/nmarley)
-GoByte [GoByteDev](https://github.com/gobytecoin)
 
 ## Contributing
 
